@@ -1,0 +1,15 @@
+.appContainer {
+    width: 280px;
+}
+.videoFrame {
+    width: 260px;
+    border-radius: 10px; 
+    overflow: hidden; 
+}
+.voteBtn {
+	margin-top: 8px;
+	margin-bottom: 12px;
+}
+.votesResult {
+    margin-right: 6px;
+}
