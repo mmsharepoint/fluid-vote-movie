@@ -6,7 +6,7 @@ In action while two browser clients syncing:
 
 ![In action](assets/SyncVoting.gif)
 
-For further details see the author's [blog post](https://mmsharepoint.wordpress.com/2022/06/)
+For further details see the author's [blog post](https://mmsharepoint.wordpress.com/2022/05/31/fluidframework-in-a-collaborative-app-vote-movies/)
 
 Challenge also described with a Microsoft Teams app in a former [blog post](https://mmsharepoint.wordpress.com/2022/05/26/teams-meeting-apps-a-sample-for-in-meeting-experience-and-stageview-vote-movies/)
 

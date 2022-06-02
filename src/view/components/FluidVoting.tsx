@@ -1,5 +1,5 @@
-import { SharedMap } from "fluid-framework";
 import React from "react";
+import { SharedMap } from "fluid-framework";
 
 export interface IFluidVotingProps {
   votingMap: SharedMap;
