@@ -1,49 +1,36 @@
 import React from 'react';
-import { TinyliciousClient } from '@fluidframework/tinylicious-client';
+// import { TinyliciousClient } from '@fluidframework/tinylicious-client';
 import { IFluidContainer, SharedMap } from 'fluid-framework';
 import { FluidVoting } from './components/FluidVoting';
-
-const client = new TinyliciousClient();
-const containerSchema = {
-  initialObjects: { sharedVotes: SharedMap }
-};
-
-const createContainer = async () => {
-  const { container } = await client.createContainer(containerSchema);
-  const containerId = await container.attach();
-
-  // Initialize votes
-  const sharedVotes = container.initialObjects.sharedVotes as SharedMap;
-  sharedVotes.set("votes1", 0);
-  sharedVotes.set("votes2", 0);
-  sharedVotes.set("votes3", 0);
-  return containerId;
-};
-
-const getContainer = async (containerId: string) => {
-  const { container } = await client.getContainer(containerId, containerSchema);
-  return container;
-}
-
-const getFluidContainer = async () => {
-  let containerId: string = window.location.hash.substring(1);
-  if (!containerId) {
-    containerId = await createContainer();
-    window.location.hash = containerId;
-  }
-  const container = await getContainer(containerId);
-
-  return container;
-};
+import { getFluidContainer } from "../utils";
+import { UserLogin } from './components/UserLogin';
 
 const App = () => {
   const [fluidContainer, setFluidContainer] = React.useState<IFluidContainer>();
   const [fluidContainerMap, setFluidContainerMap] = React.useState<SharedMap>();
+  const [userDisplayName, setUserDisplayName] = React.useState<string>("");
+  const [userID, setUserID] = React.useState<string>();
+  const [userLoggedin, setUserLoggedin] = React.useState<boolean>(false);
   
+  const login = async (name: string, userName: string, idToken: string) => {
+    setUserDisplayName(name);    
+    setUserLoggedin(true);
+    setUserID(userName);
+    const container: IFluidContainer = await getFluidContainer(userName, idToken);
+    setFluidContainer(container);
+  };
+
+  const logout = () => {
+    setUserDisplayName("");
+    setUserLoggedin(false);
+  };
+
   React.useEffect(() => {
-    getFluidContainer()
-     .then(c => setFluidContainer(c));
-  }, []);
+    if (userID === "") {
+      getFluidContainer(userID)
+        .then(c => setFluidContainer(c));
+    }
+  }, [userID]); // Will login with user "" as long as initialized that way
 
   React.useEffect(() => {
     if (fluidContainer !== undefined) {
@@ -52,9 +39,15 @@ const App = () => {
     }
   }, [fluidContainer]);
 
-  if (fluidContainerMap !== undefined) {
+  if (fluidContainerMap !== undefined ||
+      !userLoggedin) { // Comment this if your token provider does not require authentication
     return (
-      <FluidVoting votingMap={fluidContainerMap!} />
+      <div>
+        <UserLogin loggedIn={userLoggedin} name={userDisplayName} login={login} logout={logout} />
+        {userLoggedin && // Comment this if your token provider does not require authentication
+        <FluidVoting votingMap={fluidContainerMap!} />
+        }
+      </div>
     );
   }
   else {

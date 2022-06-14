@@ -10,9 +10,9 @@ export const FluidVoting = (props: IFluidVotingProps) => {
   const [votes2, setVotes2] = React.useState<number>(props.votingMap.get("votes2")!);
   const [votes3, setVotes3] = React.useState<number>(props.votingMap.get("votes3")!);
 
-  const videoSrc1 = `https://ia904503.us.archive.org/5/items/windows-7-sample-video/Wildlife.mp4`;
-  const videoSrc2 = `https://adaptivecardsblob.blob.core.windows.net/assets/AdaptiveCardsOverviewVideo.mp4`;
-  const videoSrc3 = `https://jsoncompare.org/LearningContainer/SampleFiles/Video/MP4/Sample-MP4-Video-File-for-Testing.mp4`;
+  const videoSrc1 = process.env.REACT_APP_VIDEOSRC1;
+  const videoSrc2 = process.env.REACT_APP_VIDEOSRC2;
+  const videoSrc3 = process.env.REACT_APP_VIDEOSRC3;
 
   React.useEffect(() => {
     const updateVotes = () => {

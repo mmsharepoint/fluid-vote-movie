@@ -24,6 +24,7 @@ Challenge also described with a Microsoft Teams app in a former [blog post](http
 Version|Date|Author|Comments
 -------|----|----|--------
 1.0|Jun 01, 2022|[Markus Moeller](https://twitter.com/moeller2_0)|Initial release
+1.1|Jun 01, 2022|[Markus Moeller](https://twitter.com/moeller2_0)|Azure Fluid Relay added
 
 ## Disclaimer
 
@@ -34,7 +35,8 @@ Version|Date|Author|Comments
     ```bash
     git clone https://github.com/mmsharepoint/fluid-vote-movie.git
     ```
-
+- Create an Azure AD app registration without specific permissions (or reuse an existing one)
+- Put AppID and other relevant parameters to local .env (derive it from .env-sample)
 - In TWO consoles, navigate to `/fluid-vote-movie`
 
     ```bash
@@ -67,6 +69,8 @@ This is a standalone web app to show usage of Microsoft's Fluid Framework
 * Render video files with React and HTML5
 * Instantiate a Fluid Framework container
 * Sync runtime values over different clients
+* Use Azure Fluid Relay service as enterprise resource for data container storage
 
 ## Useful links
-[Microsoft's Fluid Framework](https://fluidframework.com/)
+[Microsoft's Fluid Framework](https://fluidframework.com/?WT.mc_id=M365-MVP-5004617)
+[Microsoft Azure Fluid Relay service](https://azure.microsoft.com/en-us/services/fluid-relay?WT.mc_id=M365-MVP-5004617)
