@@ -2,11 +2,19 @@
 
 Small demo standalone app letting users vote for a movie while results are synced over different clients with Microsoft's fluid Framework.
 
+Before user login nothing is rendered:
+
+![Before login](assets/07AppBeforeLogin.gif)
+
+After login and established container movies (and potential existing votes)are rendered:
+
+![After login](assets/08AppAfterLogin.gif)
+
 In action while two browser clients syncing:
 
-![In action](assets/SyncVoting.gif)
+![In action](assets/SyncVotingUser.gif)
 
-For further details see the author's [blog post](https://mmsharepoint.wordpress.com/2022/05/31/fluidframework-in-a-collaborative-app-vote-movies/)
+For further details see the author's [blog post](https://mmsharepoint.wordpress.com/2022/06/04/fluidframework-and-azure-fluid-relay-service/)
 
 Challenge also described with a Microsoft Teams app in a former [blog post](https://mmsharepoint.wordpress.com/2022/05/26/teams-meeting-apps-a-sample-for-in-meeting-experience-and-stageview-vote-movies/)
 
@@ -24,7 +32,7 @@ Challenge also described with a Microsoft Teams app in a former [blog post](http
 Version|Date|Author|Comments
 -------|----|----|--------
 1.0|Jun 01, 2022|[Markus Moeller](https://twitter.com/moeller2_0)|Initial release
-1.1|Jun 01, 2022|[Markus Moeller](https://twitter.com/moeller2_0)|Azure Fluid Relay added
+1.1|Jun 20, 2022|[Markus Moeller](https://twitter.com/moeller2_0)|Azure Fluid Relay added
 
 ## Disclaimer
 
@@ -35,7 +43,8 @@ Version|Date|Author|Comments
     ```bash
     git clone https://github.com/mmsharepoint/fluid-vote-movie.git
     ```
-- Create an Azure AD app registration without specific permissions (or reuse an existing one)
+- Adjust code to only use InsecureTokenProvider OR
+- Deploy and configure parallel Azure Function acting as a token provider: https://github.com/mmsharepoint/fluid-vote-movie-tokenprovider 
 - Put AppID and other relevant parameters to local .env (derive it from .env-sample)
 - In TWO consoles, navigate to `/fluid-vote-movie`
 

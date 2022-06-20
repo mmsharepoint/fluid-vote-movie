@@ -1,5 +1,4 @@
 import React from 'react';
-// import { TinyliciousClient } from '@fluidframework/tinylicious-client';
 import { IFluidContainer, SharedMap } from 'fluid-framework';
 import { FluidVoting } from './components/FluidVoting';
 import { getFluidContainer } from "../utils";

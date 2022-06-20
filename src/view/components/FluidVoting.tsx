@@ -28,24 +28,24 @@ export const FluidVoting = (props: IFluidVotingProps) => {
     };
   });
     return (
-        <div className='appContainer' >
-          <div className="videoFrame">
-            <video src={videoSrc1} controls width={260}></video>
-          </div>
-          <button onClick={() => { props.votingMap.set("votes1", votes1! + 1); }}>Vote Movie 1</button>
-          <div className="videoFrame">
-            <video src={videoSrc2} controls width={260}></video>
-          </div>
-          <button onClick={() => { props.votingMap.set("votes2", votes2! + 1); }}>Vote Movie 2</button>
-          <div className="videoFrame">
-            <video src={videoSrc3} controls width={260}></video>
-          </div>
-          <button onClick={() => { props.votingMap.set("votes3", votes3! + 1); }}>Vote Movie 3</button>
-          <div>
-              <span className="votesResult"><text>{`Votes Movie 1: ${votes1}`} </text></span>
-              <span className="votesResult"><text>{`Votes Movie 2: ${votes2}`} </text></span>
-              <span className="votesResult"><text>{`Votes Movie 3: ${votes3}`} </text></span>
-          </div>
+      <div className='appContainer' >
+        <div className="videoFrame">
+          <video src={videoSrc1} controls width={260}></video>
         </div>
-      );
+        <button onClick={() => { props.votingMap.set("votes1", votes1! + 1); }}>Vote Movie 1</button>
+        <div className="videoFrame">
+          <video src={videoSrc2} controls width={260}></video>
+        </div>
+        <button onClick={() => { props.votingMap.set("votes2", votes2! + 1); }}>Vote Movie 2</button>
+        <div className="videoFrame">
+          <video src={videoSrc3} controls width={260}></video>
+        </div>
+        <button onClick={() => { props.votingMap.set("votes3", votes3! + 1); }}>Vote Movie 3</button>
+        <div>
+            <span className="votesResult"><text>{`Votes Movie 1: ${votes1}`} </text></span>
+            <span className="votesResult"><text>{`Votes Movie 2: ${votes2}`} </text></span>
+            <span className="votesResult"><text>{`Votes Movie 3: ${votes3}`} </text></span>
+        </div>
+      </div>
+    );
 };
