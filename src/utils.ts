@@ -1,23 +1,22 @@
-import { AzureClient, AzureClientProps, AzureFunctionTokenProvider } from "@fluidframework/azure-client";
+import { AzureClient, AzureClientProps, AzureFunctionTokenProvider, AzureLocalConnectionConfig, AzureRemoteConnectionConfig } from "@fluidframework/azure-client";
 import { InsecureTokenProvider } from "@fluidframework/test-client-utils";
 import { ContainerSchema, IFluidContainer, SharedMap } from "fluid-framework";
 import { AzureFunctionTokenProviderSec } from "./AzureFunctionTokenProviderSec";
 
 let userID = "";
 const useAzure = true; // | false
-
-export const connectionConfig: AzureClientProps = useAzure ? { connection: {
-    tenantId: process.env.REACT_APP_TENANT_ID!,
-    tokenProvider: new AzureFunctionTokenProvider(process.env.REACT_APP_AZURETOKENURL + "/api/FluidTokenProvider", { userId: userID, userName: "Test User" }),
-    orderer: process.env.REACT_APP_ORDERER!,
-    storage: process.env.REACT_APP_STORAGE!,
-}} :
- { connection: {
-    tenantId: process.env.REACT_APP_TENANT_ID!,
-    tokenProvider: new InsecureTokenProvider("c51b27e2881cfc8d8101d0e1dfaea768", { id: userID }), // Problematic to have secret here in client-side code
-    orderer: process.env.REACT_APP_ORDERER!,
-    storage: process.env.REACT_APP_STORAGE!,
-}} ;
+const AzureLocalConnection: AzureLocalConnectionConfig = {
+  type: "local",
+  tokenProvider: new InsecureTokenProvider("c51b27e2881cfc8d8101d0e1dfaea768", { id: userID }), // Problematic to have secret here in client-side code
+  endpoint: process.env.REACT_APP_REDIRECTURI!,
+};
+const AzureRemoteConnection: AzureRemoteConnectionConfig = {
+  type: "remote",
+  tenantId: process.env.REACT_APP_TENANT_ID!,
+  tokenProvider: new AzureFunctionTokenProvider(process.env.REACT_APP_AZURETOKENURL + "/api/FluidTokenProvider", { userId: userID, userName: "Test User" }),
+  endpoint: process.env.REACT_APP_ORDERER!
+};
+export const connectionConfig: AzureClientProps = useAzure ? { connection: AzureRemoteConnection} : { connection: AzureLocalConnection } ;
 
 const containerSchema: ContainerSchema = {
   initialObjects: { sharedVotes: SharedMap }
