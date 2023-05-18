@@ -24,6 +24,7 @@ Challenge also described with a Microsoft Teams app in a former [blog post](http
 Version|Date|Author|Comments
 -------|----|----|--------
 1.0|Jun 01, 2022|[Markus Moeller](https://twitter.com/moeller2_0)|Initial release
+1.1|May 18, 2023|[Markus Moeller](https://twitter.com/moeller2_0)|GitHub Action added
 
 ## Disclaimer
 
