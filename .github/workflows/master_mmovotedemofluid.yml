@@ -28,7 +28,7 @@ jobs:
 
       # Zip artifacts to speed things up
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -qr -x "src/*" "temp/*" "package-lock.json" "README.md"
+        run: zip release.zip ./build/* -r 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
