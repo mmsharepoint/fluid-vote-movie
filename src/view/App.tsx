@@ -14,7 +14,7 @@ const createClient = () => {
   const connectionConfig: AzureClientProps = { connection: {
     tenantId: process.env.REACT_APP_TENANT_ID!,
     tokenProvider: new InsecureTokenProvider(process.env.REACT_APP_PRIMARY_KEY!, { id: userID }),
-    endpoint: process.env.REACT_APP_HOSTNAME!,
+    endpoint: process.env.REACT_APP_FLUID_SERVICE_ENDPOINT!,
     type: "remote"
   }} ;
   const client = new AzureClient(connectionConfig);
