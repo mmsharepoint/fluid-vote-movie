@@ -1,12 +1,28 @@
 import React from 'react';
+import { AzureClient, AzureClientProps, AzureFunctionTokenProvider, AzureLocalConnectionConfig, AzureRemoteConnectionConfig } from "@fluidframework/azure-client";
+import { InsecureTokenProvider } from "@fluidframework/test-client-utils";
 import { TinyliciousClient } from '@fluidframework/tinylicious-client';
 import { IFluidContainer, SharedMap } from 'fluid-framework';
 import { FluidVoting } from './components/FluidVoting';
 
-const client = new TinyliciousClient();
+// const client = new TinyliciousClient();
 const containerSchema = {
   initialObjects: { sharedVotes: SharedMap }
 };
+
+const createClient = () => {
+  const userID = "";
+  const connectionConfig: AzureClientProps = { connection: {
+    tenantId: process.env.REACT_APP_TENANT_ID!,
+    tokenProvider: new InsecureTokenProvider(process.env.REACT_APP_PRIMARY_KEY!, { id: userID }),
+    endpoint: process.env.REACT_APP_HOSTNAME!,
+    type: "remote"
+  }} ;
+  const client = new AzureClient(connectionConfig);
+  return client;
+}
+
+const client = createClient();
 
 const createContainer = async () => {
   const { container } = await client.createContainer(containerSchema);

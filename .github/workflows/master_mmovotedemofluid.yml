@@ -6,9 +6,13 @@ name: Build and deploy Node.js app to Azure Web App - mmoVoteDemoFluid
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
+env:
+  REACT_APP_TENANT_ID: ${{ secrets.REACT_APP_TENANT_ID }}  # set this to your tenant id
+  REACT_APP_PRIMARY_KEY: ${{ secrets.REACT_APP_PRIMARY_KEY }}   # set this to your Azire Fluid Relay primary key
+  
 jobs:
   build:
     runs-on: ubuntu-latest
