@@ -11,8 +11,9 @@ on:
 
 env:
   REACT_APP_TENANT_ID: ${{ secrets.REACT_APP_TENANT_ID }}  # set this to your tenant id
-  REACT_APP_PRIMARY_KEY: ${{ secrets.REACT_APP_PRIMARY_KEY }}   # set this to your Azire Fluid Relay primary key
-  
+  REACT_APP_PRIMARY_KEY: ${{ secrets.REACT_APP_PRIMARY_KEY }}   # set this to your Azure Fluid Relay primary key
+  REACT_APP_HOSTNAME: ${{ secrets.REACT_APP_HOSTNAME }}   # set this to your app service url
+
 jobs:
   build:
     runs-on: ubuntu-latest
