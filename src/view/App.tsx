@@ -1,7 +1,6 @@
 import React from 'react';
-import { AzureClient, AzureClientProps, AzureFunctionTokenProvider, AzureLocalConnectionConfig, AzureRemoteConnectionConfig } from "@fluidframework/azure-client";
+import { AzureClient, AzureClientProps } from "@fluidframework/azure-client";
 import { InsecureTokenProvider } from "@fluidframework/test-client-utils";
-import { TinyliciousClient } from '@fluidframework/tinylicious-client';
 import { IFluidContainer, SharedMap } from 'fluid-framework';
 import { FluidVoting } from './components/FluidVoting';
 
